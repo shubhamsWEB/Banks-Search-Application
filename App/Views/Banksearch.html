@@ -1,63 +1,68 @@
 ﻿<h1 style="text-align:center;">BANK SEARCH APP</h1><hr />
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Number Of Records</span>
-                </div>
-                <input type="number" class="form-control" aria-label="Sizing example input" ng-model="viewby" value="{{viewby}}" ng-change="setItemsPerPage(viewby)" aria-describedby="inputGroup-sizing-default">
-            </div>
-            </div>
-        <div class="col-md-3">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-map-marker-alt"></i></span>
-                </div>
-                <select class="form-control" ng-model="city" value="{{city}}" type="text" ng-change="getData()">
-                    <option selected>MUMBAI</option>
-                    <option>DELHI</option>
-                    <option>RAIPUR</option>
-                    <option>BANGALURU</option>
-                    <option>BHOPAL</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Search Banks</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Sizing example input" ng-model="search" aria-describedby="inputGroup-sizing-default">
-            </div>
-        </div>
-    </div>
-    <table class="table table-striped">
-        <thead>
-            <tr style="text-align:center;">
-                <th></th>
-                <th scope="col">S No.</th>
-                <th scope="col">Bank Name</th>
-                <th scope="col">IFSC Code</th>
-                <th scope="col">Branch</th>
-                <th scope="col">City</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="text-align:center;" ng-repeat="bank in Banks.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: search ">
-                <td ng-click="currentAddFav(bank.ifsc)"><i ng-class="{ fav: bank.isFav == 1}" class="far fa-star"></i></td>
-                <td>{{$index + 1}}</td>
-                <td>{{bank.bank_name}}</td>
-                <td>{{bank.ifsc}}</td>
-                <td>{{bank.branch}}</td>
-                <td>{{bank.city}}</td>
-                <td><a href="#!Bank/{{bank.ifsc}}">View</a></td>
-            </tr>
-        </tbody>
-    </table>
+                                                   <div class="container-fluid">
+                                                       <div class="row">
+                                                           <div class="col-md-3">
+                                                               <div class="input-group mb-3">
+                                                                   <div class="input-group-prepend">
+                                                                       <span class="input-group-text" id="inputGroup-sizing-default">Number Of Records</span>
+                                                                   </div>
+                                                                   <input type="number" class="form-control" aria-label="Sizing example input" ng-model="viewby" value="{{viewby}}" ng-change="setItemsPerPage(viewby)" aria-describedby="inputGroup-sizing-default">
+                                                               </div>
+                                                           </div>
+                                                           <div class="col-md-3">
+                                                               <div class="input-group mb-3">
+                                                                   <div class="input-group-prepend">
+                                                                       <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-map-marker-alt"></i></span>
+                                                                   </div>
+                                                                   <select class="form-control" ng-model="city" value="{{city}}" type="text" ng-change="getData()">
+                                                                       <option selected>MUMBAI</option>
+                                                                       <option>DELHI</option>
+                                                                       <option>RAIPUR</option>
+                                                                       <option>BANGALURU</option>
+                                                                       <option>BHOPAL</option>
+                                                                   </select>
+                                                               </div>
+                                                           </div>
+                                                           <div class="col-md-6">
+                                                               <div class="input-group mb-3">
+                                                                   <div class="input-group-prepend">
+                                                                       <span class="input-group-text" id="inputGroup-sizing-default">Search Banks</span>
+                                                                   </div>
+                                                                   <input type="text" class="form-control" aria-label="Sizing example input" ng-model="search" aria-describedby="inputGroup-sizing-default">
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                       <div id="spinner" ng-show="loaded">
+                                                           <div id="loader-wrapper">
+                                                               <div id="loader"></div>
+                                                           </div>
+                                                       </div>
+                                                       <table class="table table-striped">
+                                                           <thead>
+                                                               <tr style="text-align:center;">
+                                                                   <th></th>
+                                                                   <th scope="col">S No.</th>
+                                                                   <th scope="col">Bank Name</th>
+                                                                   <th scope="col">IFSC Code</th>
+                                                                   <th scope="col">Branch</th>
+                                                                   <th scope="col">City</th>
+                                                                   <th scope="col">Action</th>
+                                                               </tr>
+                                                           </thead>
+                                                           <tbody>
+                                                               <tr style="text-align:center;" ng-repeat="bank in Banks.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: search ">
+                                                                   <td ng-click="currentAddFav(bank.ifsc)"><i ng-class="{ 'fav': bank.isFav == 1}" class="far fa-star"></i></td>
+                                                                   <td>{{$index + 1}}</td>
+                                                                   <td>{{bank.bank_name}}</td>
+                                                                   <td>{{bank.ifsc}}</td>
+                                                                   <td>{{bank.branch}}</td>
+                                                                   <td>{{bank.city}}</td>
+                                                                   <td><a href="#!Bank/{{bank.ifsc}}">View</a></td>
+                                                               </tr>
+                                                           </tbody>
+                                                       </table>
 
-    <center>
-        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-md" items-per-page="itemsPerPage"></pagination>
-    </center>
-</div>
+                                                       <center>
+                                                           <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-md" items-per-page="itemsPerPage"></pagination>
+                                                       </center>
+                                                   </div>

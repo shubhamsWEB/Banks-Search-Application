@@ -1,10 +1,12 @@
 ﻿app.controller('BankSerach', function ($scope, getService, localStorageService) {
     $scope.Banks = localStorageService.get('bankData');
     $scope.city = 'RAIPUR';
+    $scope.loaded = true;
     var keepgoing = true;
     $scope.getData = function () {
         getService.getbanks($scope.city).then(function (data) {
             $scope.Banks = data.data;
+            $scope.loaded = false;
             $scope.favouritesList = localStorageService.get('favourites');
             angular.forEach($scope.favouritesList, function (fav, index) {
                     angular.forEach($scope.Banks, function (bank, key) {
@@ -40,7 +42,9 @@
         });
     }
     $scope.getData();
-    $scope.currentAddFav =  function (id) {
+    
+    $scope.currentAddFav = function (id) {
+        
         if (localStorageService.get('favourites')) {//If there are favourites
             var storage = localStorageService.get('favourites');
             
