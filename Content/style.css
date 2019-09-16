@@ -15,12 +15,13 @@
             position: relative;
             float: left;
             padding: 6px 12px;
-            margin-left: -1px;
+            margin-left: 1px;
             line-height: 1.42857143;
             color: #428bca;
             text-decoration: none;
-            background-color: #fff;
-            border: 1px solid #ddd;
+           
+            box-shadow: 0 15px 45px rgba(0,0,0,.1);
+           
         }
 
         .pagination > li:first-child > a,
@@ -187,4 +188,7 @@
         -ms-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+.bold {
+    font-weight: bolder;
 }
