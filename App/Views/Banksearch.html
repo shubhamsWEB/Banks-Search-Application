@@ -1,4 +1,4 @@
-﻿<div class="container-fluid" style="box-shadow: 0 15px 45px rgba(0,0,0,.1); padding:2%;" >
+﻿<div class="container-fluid" style="box-shadow: 0 15px 45px rgba(0,0,0,.1); padding:2%" >
     <h1 style="text-align:center;font-family: 'Livvic', sans-serif;font-weight:bolder;">BANK SEARCH APPLICATION</h1>
     <hr />
     <div class="row">
@@ -33,9 +33,9 @@
         <div class="col-md-6">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Search Banks</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="border-top:none; border-right:none; border-left:none;background:#fff;"><i class="fas fa-search-location"></i></span>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Search Bank in '{{city}}'" ng-model="search" aria-describedby="inputGroup-sizing-default">
+                <input style="border-top:none; border-right:none; border-left:none;" type="text" class="form-control" aria-label="Sizing example input" placeholder="Search Bank in '{{city}}'" ng-model="search" aria-describedby="inputGroup-sizing-default">
             </div>
         </div>
     </div>
@@ -51,17 +51,15 @@
                 <th scope="col">Bank Name</th>
                 <th scope="col">IFSC Code</th>
                 <th scope="col">Branch</th>
-                <th scope="col">City</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr style="text-align:center;font-family: 'Livvic', sans-serif;color:dimgrey;font-weight:600" ng-repeat="bank in filteredData.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: search" ng-click="bankDetails(ifsc)">
-                <td ng-click="currentAddFav(bank.ifsc,$event)"><i ng-click="bank.isFav = 1" ng-class="{ 'fav': bank.isFav == 1 }" class="far fa-star"></i></td>
+                <td ng-click="currentAddFav(bank.ifsc,$event)"><i ng-click="bank.isFav == 1 ? bank.isFav = 0 : bank.isFav = 1" ng-class="{ 'fav': bank.isFav == 1 }" class="far fa-star"></i></td>
                 <td>{{bank.bank_name}}</td>
                 <td>{{bank.ifsc}}</td>
                 <td>{{bank.branch}}</td>
-                <td>{{bank.city}}</td>
                 <td><a href="#!Bank/{{bank.ifsc}}">View</a></td>
             </tr>
         </tbody>

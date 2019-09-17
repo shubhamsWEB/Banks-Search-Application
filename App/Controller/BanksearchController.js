@@ -3,7 +3,7 @@
         $scope.Banks = localStorageService.get('bankData');
         $scope.city = 'RAIPUR';
         $scope.viewby = '10';
-        $scope.getData = function () {
+         $scope.getData = function () {
             $scope.loaded = true;
             getService.getbanks($scope.city).then(function (data) {
                 $scope.Banks = data.data;
@@ -12,7 +12,7 @@
                     angular.forEach($scope.Banks, function (bank, key) {
 
 
-                        if (bank.ifsc == fav.id) {
+                        if (bank.ifsc == fav) {
                             bank.isFav = 1;
                             return false
                         }
@@ -49,20 +49,23 @@
          
 
             if (localStorageService.get('favourites')) {//If there are favourites
-                var storage = localStorageService.get('favourites');
+                var storage = [];
+                 storage = localStorageService.get('favourites');
 
                 if (storage.indexOf(id) == -1) {
                     // # not found
-                    storage.push({ id });
+                    storage.push(id);
                     localStorageService.set('favourites', storage);
 
-                } 
+                } else {
+                    storage.splice(storage.indexOf(id), 1);
+                    localStorageService.set('favourites', storage);
+                }
 
             } else {//No favourites in local storage, so add new
                 var favArray = [];
-                favArray.push({ id });
+                favArray.push( id );
                 localStorageService.set('favourites', favArray);
-                console.log('New favourites list');
             }
         }
         
